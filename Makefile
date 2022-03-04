@@ -3,7 +3,7 @@
 ##################################
 # DEFAULTS
 ##################################
-GIT_VERSION := $(shell git describe --match "v[0-9]*")
+GIT_VERSION := $(shell git describe --match "v[0-9]*" --tags $(git rev-list --tags --max-count=1))
 GIT_BRANCH := $(shell git branch | grep \* | cut -d ' ' -f2)
 GIT_HASH := $(GIT_BRANCH)/$(shell git log -1 --pretty=format:"%H")
 TIMESTAMP := $(shell date '+%Y-%m-%d_%I:%M:%S%p')
@@ -12,8 +12,10 @@ CONTROLLER_GEN_REQ_VERSION := v0.4.0
 VERSION ?= $(shell git describe --match "v[0-9]*")
 
 REGISTRY?=ghcr.io
-REPO=$(REGISTRY)/kyverno
+REPO=$(REGISTRY)/nirmata
+export REPO
 IMAGE_TAG?=$(GIT_VERSION)
+export IMAGE_TAG
 GOOS ?= $(shell go env GOOS)
 ifeq ($(GOOS), darwin)
 SED=gsed
@@ -73,7 +75,7 @@ docker-publish-sbom: docker-build-sbom docker-push-sbom
 docker-build-sbom:
 	@docker buildx build --file $(PWD)/$(ALPINE_PATH)/Dockerfile --tag $(REPO)/$(SBOM_IMAGE):$(IMAGE_TAG) .
 
-docker-push-signature:
+docker-push-sbom:
 	@docker buildx build --file $(PWD)/$(ALPINE_PATH)/Dockerfile --push --tag $(REPO)/$(SBOM_IMAGE):$(IMAGE_TAG) .
 	@docker buildx build --file $(PWD)/$(ALPINE_PATH)/Dockerfile --push --tag $(REPO)/$(SBOM_IMAGE):latest .
 

@@ -24,7 +24,7 @@ rbac:
 
 image:
   # -- Image registry
-  registry: registry.connect.redhat.com
+  registry: ""
   # If you want to manage the registry you should remove it from the repository
   # registry: ghcr.io
   # repository: kyverno/kyverno
@@ -41,7 +41,7 @@ image:
 
 initImage:
   # -- Image registry
-  registry: registry.connect.redhat.com
+  registry: ""
   # If you want to manage the registry you should remove it from the repository
   # registry: ghcr.io
   # repository: kyverno/kyvernopre
@@ -62,7 +62,7 @@ initContainer:
 
 testImage:
   # -- Image registry
-  registry: registry.access.redhat.com
+  registry: ""
   # -- Image repository
   repository: registry.access.redhat.com/ubi8/nginx-120
   # -- Image tag

@@ -177,7 +177,7 @@
                     "default": "",
                     "title": "The registry Schema",
                     "examples": [
-                        "registry.connect.redhat.com"
+                        ""
                     ]
                 },
                 "repository": {
@@ -215,7 +215,7 @@
                 }
             },
             "examples": [{
-                "registry": "registry.connect.redhat.com",
+                "registry": "",
                 "repository": "registry.connect.redhat.com/nirmata/kyverno",
                 "tag": "v1.8.3",
                 "pullPolicy": "IfNotPresent",
@@ -238,7 +238,7 @@
                     "default": "",
                     "title": "The registry Schema",
                     "examples": [
-                        "registry.connect.redhat.com"
+                        ""
                     ]
                 },
                 "repository": {
@@ -267,7 +267,7 @@
                 }
             },
             "examples": [{
-                "registry": "registry.connect.redhat.com",
+                "registry": "",
                 "repository": "registry.connect.redhat.com/nirmata/kyvernopre",
                 "tag": "v1.8.3",
                 "pullPolicy": "IfNotPresent"
@@ -321,7 +321,7 @@
                     "default": "",
                     "title": "The registry Schema",
                     "examples": [
-                        "registry.access.redhat.com"
+                        ""
                     ]
                 },
                 "repository": {
@@ -350,7 +350,7 @@
                 }
             },
             "examples": [{
-                "registry": "registry.access.redhat.com",
+                "registry": "",
                 "repository": "registry.access.redhat.com/ubi8/nginx-120",
                 "tag": "1-74.1669834626",
                 "pullPolicy": "IfNotPresent"
@@ -2391,14 +2391,14 @@
             }
         },
         "image": {
-            "registry": "registry.connect.redhat.com",
+            "registry": "",
             "repository": "registry.connect.redhat.com/nirmata/kyverno",
             "tag": "v1.8.3",
             "pullPolicy": "IfNotPresent",
             "pullSecrets": []
         },
         "initImage": {
-            "registry": "registry.connect.redhat.com",
+            "registry": "",
             "repository": "registry.connect.redhat.com/nirmata/kyvernopre",
             "tag": "v1.8.3",
             "pullPolicy": "IfNotPresent"
@@ -2409,7 +2409,7 @@
             ]
         },
         "testImage": {
-            "registry": "registry.access.redhat.com",
+            "registry": "",
             "repository": "registry.access.redhat.com/ubi8/nginx-120",
             "tag": "1-74.1669834626",
             "pullPolicy": "IfNotPresent"

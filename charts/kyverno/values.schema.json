@@ -1,0 +1,2668 @@
+{
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "default": {},
+    "title": "Root Schema",
+    "required": [
+        "nameOverride",
+        "fullnameOverride",
+        "namespace",
+        "customLabels",
+        "rbac",
+        "image",
+        "initImage",
+        "initContainer",
+        "testImage",
+        "replicaCount",
+        "podLabels",
+        "podAnnotations",
+        "podSecurityContext",
+        "securityContext",
+        "testSecurityContext",
+        "priorityClassName",
+        "antiAffinity",
+        "podAntiAffinity",
+        "podAffinity",
+        "nodeAffinity",
+        "podDisruptionBudget",
+        "nodeSelector",
+        "tolerations",
+        "hostNetwork",
+        "dnsPolicy",
+        "envVarsInit",
+        "envVars",
+        "extraArgs",
+        "extraInitContainers",
+        "extraContainers",
+        "imagePullSecrets",
+        "resources",
+        "initResources",
+        "testResources",
+        "startupProbe",
+        "livenessProbe",
+        "readinessProbe",
+        "generatecontrollerExtraResources",
+        "excludeKyvernoNamespace",
+        "resourceFiltersExcludeNamespaces",
+        "config",
+        "updateStrategy",
+        "service",
+        "topologySpreadConstraints",
+        "metricsService",
+        "serviceMonitor",
+        "createSelfSignedCert",
+        "installCRDs",
+        "crds",
+        "networkPolicy",
+        "webhooksCleanup",
+        "tufRootMountPath",
+        "grafana"
+    ],
+    "properties": {
+        "nameOverride": {
+            "type": "string",
+            "default": "",
+            "title": "The nameOverride Schema",
+            "examples": [
+                "kyverno"
+            ]
+        },
+        "fullnameOverride": {
+            "type": "string",
+            "default": "",
+            "title": "The fullnameOverride Schema",
+            "examples": [
+                "kyverno"
+            ]
+        },
+        "namespace": {
+            "type": "string",
+            "default": "",
+            "title": "The namespace Schema",
+            "examples": [
+                "kyverno"
+            ]
+        },
+        "customLabels": {
+            "type": "object",
+            "default": {},
+            "title": "The customLabels Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "rbac": {
+            "type": "object",
+            "default": {},
+            "title": "The rbac Schema",
+            "required": [
+                "create",
+                "serviceAccount"
+            ],
+            "properties": {
+                "create": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The create Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "serviceAccount": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The serviceAccount Schema",
+                    "required": [
+                        "create",
+                        "name",
+                        "annotations"
+                    ],
+                    "properties": {
+                        "create": {
+                            "type": "boolean",
+                            "default": false,
+                            "title": "The create Schema",
+                            "examples": [
+                                true
+                            ]
+                        },
+                        "name": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The name Schema",
+                            "examples": [
+                                "kyverno"
+                            ]
+                        },
+                        "annotations": {
+                            "type": "object",
+                            "default": {},
+                            "title": "The annotations Schema",
+                            "required": [],
+                            "properties": {},
+                            "examples": [{}]
+                        }
+                    },
+                    "examples": [{
+                        "create": true,
+                        "name": "kyverno",
+                        "annotations": {}
+                    }]
+                }
+            },
+            "examples": [{
+                "create": true,
+                "serviceAccount": {
+                    "create": true,
+                    "name": "kyverno",
+                    "annotations": {}
+                }
+            }]
+        },
+        "image": {
+            "type": "object",
+            "default": {},
+            "title": "The image Schema",
+            "required": [
+                "registry",
+                "repository",
+                "tag",
+                "pullPolicy",
+                "pullSecrets"
+            ],
+            "properties": {
+                "registry": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The registry Schema",
+                    "examples": [
+                        "registry.connect.redhat.com"
+                    ]
+                },
+                "repository": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The repository Schema",
+                    "examples": [
+                        "registry.connect.redhat.com/nirmata/kyverno"
+                    ]
+                },
+                "tag": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The tag Schema",
+                    "examples": [
+                        "v1.8.3"
+                    ]
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The pullPolicy Schema",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                },
+                "pullSecrets": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The pullSecrets Schema",
+                    "items": {},
+                    "examples": [
+                        []
+                    ]
+                }
+            },
+            "examples": [{
+                "registry": "registry.connect.redhat.com",
+                "repository": "registry.connect.redhat.com/nirmata/kyverno",
+                "tag": "v1.8.3",
+                "pullPolicy": "IfNotPresent",
+                "pullSecrets": []
+            }]
+        },
+        "initImage": {
+            "type": "object",
+            "default": {},
+            "title": "The initImage Schema",
+            "required": [
+                "registry",
+                "repository",
+                "tag",
+                "pullPolicy"
+            ],
+            "properties": {
+                "registry": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The registry Schema",
+                    "examples": [
+                        "registry.connect.redhat.com"
+                    ]
+                },
+                "repository": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The repository Schema",
+                    "examples": [
+                        "registry.connect.redhat.com/nirmata/kyvernopre"
+                    ]
+                },
+                "tag": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The tag Schema",
+                    "examples": [
+                        "v1.8.3"
+                    ]
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The pullPolicy Schema",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                }
+            },
+            "examples": [{
+                "registry": "registry.connect.redhat.com",
+                "repository": "registry.connect.redhat.com/nirmata/kyvernopre",
+                "tag": "v1.8.3",
+                "pullPolicy": "IfNotPresent"
+            }]
+        },
+        "initContainer": {
+            "type": "object",
+            "default": {},
+            "title": "The initContainer Schema",
+            "required": [
+                "extraArgs"
+            ],
+            "properties": {
+                "extraArgs": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The extraArgs Schema",
+                    "items": {
+                        "type": "string",
+                        "default": "",
+                        "title": "A Schema",
+                        "examples": [
+                            "--loggingFormat=text"
+                        ]
+                    },
+                    "examples": [
+                        [
+                            "--loggingFormat=text"]
+                    ]
+                }
+            },
+            "examples": [{
+                "extraArgs": [
+                    "--loggingFormat=text"
+                ]
+            }]
+        },
+        "testImage": {
+            "type": "object",
+            "default": {},
+            "title": "The testImage Schema",
+            "required": [
+                "registry",
+                "repository",
+                "tag",
+                "pullPolicy"
+            ],
+            "properties": {
+                "registry": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The registry Schema",
+                    "examples": [
+                        "registry.access.redhat.com"
+                    ]
+                },
+                "repository": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The repository Schema",
+                    "examples": [
+                        "registry.access.redhat.com/ubi8/nginx-120"
+                    ]
+                },
+                "tag": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The tag Schema",
+                    "examples": [
+                        "1-74.1669834626"
+                    ]
+                },
+                "pullPolicy": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The pullPolicy Schema",
+                    "examples": [
+                        "IfNotPresent"
+                    ]
+                }
+            },
+            "examples": [{
+                "registry": "registry.access.redhat.com",
+                "repository": "registry.access.redhat.com/ubi8/nginx-120",
+                "tag": "1-74.1669834626",
+                "pullPolicy": "IfNotPresent"
+            }]
+        },
+        "replicaCount": {
+            "type": "integer",
+            "default": 0,
+            "title": "The replicaCount Schema",
+            "examples": [
+                1
+            ]
+        },
+        "podLabels": {
+            "type": "object",
+            "default": {},
+            "title": "The podLabels Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "podAnnotations": {
+            "type": "object",
+            "default": {},
+            "title": "The podAnnotations Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "podSecurityContext": {
+            "type": "object",
+            "default": {},
+            "title": "The podSecurityContext Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "securityContext": {
+            "type": "object",
+            "default": {},
+            "title": "The securityContext Schema",
+            "required": [
+                "runAsNonRoot",
+                "privileged",
+                "allowPrivilegeEscalation",
+                "readOnlyRootFilesystem",
+                "capabilities",
+                "seccompProfile"
+            ],
+            "properties": {
+                "runAsNonRoot": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The runAsNonRoot Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "privileged": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The privileged Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "allowPrivilegeEscalation": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The allowPrivilegeEscalation Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The readOnlyRootFilesystem Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "capabilities": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The capabilities Schema",
+                    "required": [
+                        "drop"
+                    ],
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "default": [],
+                            "title": "The drop Schema",
+                            "items": {
+                                "type": "string",
+                                "default": "",
+                                "title": "A Schema",
+                                "examples": [
+                                    "ALL"
+                                ]
+                            },
+                            "examples": [
+                                [
+                                    "ALL"]
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "drop": [
+                            "ALL"
+                        ]
+                    }]
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The seccompProfile Schema",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The type Schema",
+                            "examples": [
+                                "RuntimeDefault"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "type": "RuntimeDefault"
+                    }]
+                }
+            },
+            "examples": [{
+                "runAsNonRoot": true,
+                "privileged": false,
+                "allowPrivilegeEscalation": false,
+                "readOnlyRootFilesystem": true,
+                "capabilities": {
+                    "drop": [
+                        "ALL"
+                    ]
+                },
+                "seccompProfile": {
+                    "type": "RuntimeDefault"
+                }
+            }]
+        },
+        "testSecurityContext": {
+            "type": "object",
+            "default": {},
+            "title": "The testSecurityContext Schema",
+            "required": [
+                "runAsUser",
+                "runAsGroup",
+                "runAsNonRoot",
+                "privileged",
+                "allowPrivilegeEscalation",
+                "readOnlyRootFilesystem",
+                "capabilities",
+                "seccompProfile"
+            ],
+            "properties": {
+                "runAsUser": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The runAsUser Schema",
+                    "examples": [
+                        65534
+                    ]
+                },
+                "runAsGroup": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The runAsGroup Schema",
+                    "examples": [
+                        65534
+                    ]
+                },
+                "runAsNonRoot": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The runAsNonRoot Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "privileged": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The privileged Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "allowPrivilegeEscalation": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The allowPrivilegeEscalation Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "readOnlyRootFilesystem": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The readOnlyRootFilesystem Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "capabilities": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The capabilities Schema",
+                    "required": [
+                        "drop"
+                    ],
+                    "properties": {
+                        "drop": {
+                            "type": "array",
+                            "default": [],
+                            "title": "The drop Schema",
+                            "items": {
+                                "type": "string",
+                                "default": "",
+                                "title": "A Schema",
+                                "examples": [
+                                    "ALL"
+                                ]
+                            },
+                            "examples": [
+                                [
+                                    "ALL"]
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "drop": [
+                            "ALL"
+                        ]
+                    }]
+                },
+                "seccompProfile": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The seccompProfile Schema",
+                    "required": [
+                        "type"
+                    ],
+                    "properties": {
+                        "type": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The type Schema",
+                            "examples": [
+                                "RuntimeDefault"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "type": "RuntimeDefault"
+                    }]
+                }
+            },
+            "examples": [{
+                "runAsUser": 65534,
+                "runAsGroup": 65534,
+                "runAsNonRoot": true,
+                "privileged": false,
+                "allowPrivilegeEscalation": false,
+                "readOnlyRootFilesystem": true,
+                "capabilities": {
+                    "drop": [
+                        "ALL"
+                    ]
+                },
+                "seccompProfile": {
+                    "type": "RuntimeDefault"
+                }
+            }]
+        },
+        "priorityClassName": {
+            "type": "string",
+            "default": "",
+            "title": "The priorityClassName Schema",
+            "examples": [
+                ""
+            ]
+        },
+        "antiAffinity": {
+            "type": "object",
+            "default": {},
+            "title": "The antiAffinity Schema",
+            "required": [
+                "enable"
+            ],
+            "properties": {
+                "enable": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The enable Schema",
+                    "examples": [
+                        true
+                    ]
+                }
+            },
+            "examples": [{
+                "enable": true
+            }]
+        },
+        "podAntiAffinity": {
+            "type": "object",
+            "default": {},
+            "title": "The podAntiAffinity Schema",
+            "required": [
+                "preferredDuringSchedulingIgnoredDuringExecution"
+            ],
+            "properties": {
+                "preferredDuringSchedulingIgnoredDuringExecution": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The preferredDuringSchedulingIgnoredDuringExecution Schema",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "title": "A Schema",
+                        "required": [
+                            "weight",
+                            "podAffinityTerm"
+                        ],
+                        "properties": {
+                            "weight": {
+                                "type": "integer",
+                                "default": 0,
+                                "title": "The weight Schema",
+                                "examples": [
+                                    1
+                                ]
+                            },
+                            "podAffinityTerm": {
+                                "type": "object",
+                                "default": {},
+                                "title": "The podAffinityTerm Schema",
+                                "required": [
+                                    "labelSelector",
+                                    "topologyKey"
+                                ],
+                                "properties": {
+                                    "labelSelector": {
+                                        "type": "object",
+                                        "default": {},
+                                        "title": "The labelSelector Schema",
+                                        "required": [
+                                            "matchExpressions"
+                                        ],
+                                        "properties": {
+                                            "matchExpressions": {
+                                                "type": "array",
+                                                "default": [],
+                                                "title": "The matchExpressions Schema",
+                                                "items": {
+                                                    "type": "object",
+                                                    "default": {},
+                                                    "title": "A Schema",
+                                                    "required": [
+                                                        "key",
+                                                        "operator",
+                                                        "values"
+                                                    ],
+                                                    "properties": {
+                                                        "key": {
+                                                            "type": "string",
+                                                            "default": "",
+                                                            "title": "The key Schema",
+                                                            "examples": [
+                                                                "app.kubernetes.io/name"
+                                                            ]
+                                                        },
+                                                        "operator": {
+                                                            "type": "string",
+                                                            "default": "",
+                                                            "title": "The operator Schema",
+                                                            "examples": [
+                                                                "In"
+                                                            ]
+                                                        },
+                                                        "values": {
+                                                            "type": "array",
+                                                            "default": [],
+                                                            "title": "The values Schema",
+                                                            "items": {
+                                                                "type": "string",
+                                                                "default": "",
+                                                                "title": "A Schema",
+                                                                "examples": [
+                                                                    "kyverno"
+                                                                ]
+                                                            },
+                                                            "examples": [
+                                                                [
+                                                                    "kyverno"]
+                                                            ]
+                                                        }
+                                                    },
+                                                    "examples": [{
+                                                        "key": "app.kubernetes.io/name",
+                                                        "operator": "In",
+                                                        "values": [
+                                                            "kyverno"
+                                                        ]
+                                                    }]
+                                                },
+                                                "examples": [
+                                                    [{
+                                                        "key": "app.kubernetes.io/name",
+                                                        "operator": "In",
+                                                        "values": [
+                                                            "kyverno"
+                                                        ]
+                                                    }]
+                                                ]
+                                            }
+                                        },
+                                        "examples": [{
+                                            "matchExpressions": [{
+                                                "key": "app.kubernetes.io/name",
+                                                "operator": "In",
+                                                "values": [
+                                                    "kyverno"
+                                                ]
+                                            }]
+                                        }]
+                                    },
+                                    "topologyKey": {
+                                        "type": "string",
+                                        "default": "",
+                                        "title": "The topologyKey Schema",
+                                        "examples": [
+                                            "kubernetes.io/hostname"
+                                        ]
+                                    }
+                                },
+                                "examples": [{
+                                    "labelSelector": {
+                                        "matchExpressions": [{
+                                            "key": "app.kubernetes.io/name",
+                                            "operator": "In",
+                                            "values": [
+                                                "kyverno"
+                                            ]
+                                        }]
+                                    },
+                                    "topologyKey": "kubernetes.io/hostname"
+                                }]
+                            }
+                        },
+                        "examples": [{
+                            "weight": 1,
+                            "podAffinityTerm": {
+                                "labelSelector": {
+                                    "matchExpressions": [{
+                                        "key": "app.kubernetes.io/name",
+                                        "operator": "In",
+                                        "values": [
+                                            "kyverno"
+                                        ]
+                                    }]
+                                },
+                                "topologyKey": "kubernetes.io/hostname"
+                            }
+                        }]
+                    },
+                    "examples": [
+                        [{
+                            "weight": 1,
+                            "podAffinityTerm": {
+                                "labelSelector": {
+                                    "matchExpressions": [{
+                                        "key": "app.kubernetes.io/name",
+                                        "operator": "In",
+                                        "values": [
+                                            "kyverno"
+                                        ]
+                                    }]
+                                },
+                                "topologyKey": "kubernetes.io/hostname"
+                            }
+                        }]
+                    ]
+                }
+            },
+            "examples": [{
+                "preferredDuringSchedulingIgnoredDuringExecution": [{
+                    "weight": 1,
+                    "podAffinityTerm": {
+                        "labelSelector": {
+                            "matchExpressions": [{
+                                "key": "app.kubernetes.io/name",
+                                "operator": "In",
+                                "values": [
+                                    "kyverno"
+                                ]
+                            }]
+                        },
+                        "topologyKey": "kubernetes.io/hostname"
+                    }
+                }]
+            }]
+        },
+        "podAffinity": {
+            "type": "object",
+            "default": {},
+            "title": "The podAffinity Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "nodeAffinity": {
+            "type": "object",
+            "default": {},
+            "title": "The nodeAffinity Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "podDisruptionBudget": {
+            "type": "object",
+            "default": {},
+            "title": "The podDisruptionBudget Schema",
+            "required": [
+                "minAvailable",
+                "maxUnavailable"
+            ],
+            "properties": {
+                "minAvailable": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The minAvailable Schema",
+                    "examples": [
+                        1
+                    ]
+                },
+                "maxUnavailable": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The maxUnavailable Schema",
+                    "examples": [
+                        1
+                    ]
+                }
+            },
+            "examples": [{
+                "minAvailable": 1,
+                "maxUnavailable": 1
+            }]
+        },
+        "nodeSelector": {
+            "type": "object",
+            "default": {},
+            "title": "The nodeSelector Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "tolerations": {
+            "type": "array",
+            "default": [],
+            "title": "The tolerations Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "hostNetwork": {
+            "type": "boolean",
+            "default": false,
+            "title": "The hostNetwork Schema",
+            "examples": [
+                false
+            ]
+        },
+        "dnsPolicy": {
+            "type": "string",
+            "default": "",
+            "title": "The dnsPolicy Schema",
+            "examples": [
+                "ClusterFirst"
+            ]
+        },
+        "envVarsInit": {
+            "type": "object",
+            "default": {},
+            "title": "The envVarsInit Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "envVars": {
+            "type": "object",
+            "default": {},
+            "title": "The envVars Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "extraArgs": {
+            "type": "array",
+            "default": [],
+            "title": "The extraArgs Schema",
+            "items": {
+                "type": "string",
+                "title": "A Schema",
+                "examples": [
+                    "--autogenInternals=true",
+                    "--loggingFormat=text"
+                ]
+            },
+            "examples": [
+                ["--autogenInternals=true",
+                    "--loggingFormat=text"
+                ]
+            ]
+        },
+        "extraInitContainers": {
+            "type": "array",
+            "default": [],
+            "title": "The extraInitContainers Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "extraContainers": {
+            "type": "array",
+            "default": [],
+            "title": "The extraContainers Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "imagePullSecrets": {
+            "type": "object",
+            "default": {},
+            "title": "The imagePullSecrets Schema",
+            "required": [],
+            "properties": {},
+            "examples": [{}]
+        },
+        "resources": {
+            "type": "object",
+            "default": {},
+            "title": "The resources Schema",
+            "required": [
+                "limits",
+                "requests"
+            ],
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The limits Schema",
+                    "required": [
+                        "memory"
+                    ],
+                    "properties": {
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "384Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "memory": "384Mi"
+                    }]
+                },
+                "requests": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The requests Schema",
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The cpu Schema",
+                            "examples": [
+                                "100m"
+                            ]
+                        },
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "128Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "cpu": "100m",
+                        "memory": "128Mi"
+                    }]
+                }
+            },
+            "examples": [{
+                "limits": {
+                    "memory": "384Mi"
+                },
+                "requests": {
+                    "cpu": "100m",
+                    "memory": "128Mi"
+                }
+            }]
+        },
+        "initResources": {
+            "type": "object",
+            "default": {},
+            "title": "The initResources Schema",
+            "required": [
+                "limits",
+                "requests"
+            ],
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The limits Schema",
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The cpu Schema",
+                            "examples": [
+                                "100m"
+                            ]
+                        },
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "256Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "cpu": "100m",
+                        "memory": "256Mi"
+                    }]
+                },
+                "requests": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The requests Schema",
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The cpu Schema",
+                            "examples": [
+                                "10m"
+                            ]
+                        },
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "64Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "cpu": "10m",
+                        "memory": "64Mi"
+                    }]
+                }
+            },
+            "examples": [{
+                "limits": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "requests": {
+                    "cpu": "10m",
+                    "memory": "64Mi"
+                }
+            }]
+        },
+        "testResources": {
+            "type": "object",
+            "default": {},
+            "title": "The testResources Schema",
+            "required": [
+                "limits",
+                "requests"
+            ],
+            "properties": {
+                "limits": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The limits Schema",
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The cpu Schema",
+                            "examples": [
+                                "100m"
+                            ]
+                        },
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "256Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "cpu": "100m",
+                        "memory": "256Mi"
+                    }]
+                },
+                "requests": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The requests Schema",
+                    "required": [
+                        "cpu",
+                        "memory"
+                    ],
+                    "properties": {
+                        "cpu": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The cpu Schema",
+                            "examples": [
+                                "10m"
+                            ]
+                        },
+                        "memory": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The memory Schema",
+                            "examples": [
+                                "64Mi"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "cpu": "10m",
+                        "memory": "64Mi"
+                    }]
+                }
+            },
+            "examples": [{
+                "limits": {
+                    "cpu": "100m",
+                    "memory": "256Mi"
+                },
+                "requests": {
+                    "cpu": "10m",
+                    "memory": "64Mi"
+                }
+            }]
+        },
+        "startupProbe": {
+            "type": "object",
+            "default": {},
+            "title": "The startupProbe Schema",
+            "required": [
+                "httpGet",
+                "failureThreshold",
+                "initialDelaySeconds",
+                "periodSeconds"
+            ],
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The httpGet Schema",
+                    "required": [
+                        "path",
+                        "port",
+                        "scheme"
+                    ],
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The path Schema",
+                            "examples": [
+                                "/health/liveness"
+                            ]
+                        },
+                        "port": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The port Schema",
+                            "examples": [
+                                9443
+                            ]
+                        },
+                        "scheme": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The scheme Schema",
+                            "examples": [
+                                "HTTPS"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "path": "/health/liveness",
+                        "port": 9443,
+                        "scheme": "HTTPS"
+                    }]
+                },
+                "failureThreshold": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The failureThreshold Schema",
+                    "examples": [
+                        20
+                    ]
+                },
+                "initialDelaySeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The initialDelaySeconds Schema",
+                    "examples": [
+                        2
+                    ]
+                },
+                "periodSeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The periodSeconds Schema",
+                    "examples": [
+                        6
+                    ]
+                }
+            },
+            "examples": [{
+                "httpGet": {
+                    "path": "/health/liveness",
+                    "port": 9443,
+                    "scheme": "HTTPS"
+                },
+                "failureThreshold": 20,
+                "initialDelaySeconds": 2,
+                "periodSeconds": 6
+            }]
+        },
+        "livenessProbe": {
+            "type": "object",
+            "default": {},
+            "title": "The livenessProbe Schema",
+            "required": [
+                "httpGet",
+                "initialDelaySeconds",
+                "periodSeconds",
+                "timeoutSeconds",
+                "failureThreshold",
+                "successThreshold"
+            ],
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The httpGet Schema",
+                    "required": [
+                        "path",
+                        "port",
+                        "scheme"
+                    ],
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The path Schema",
+                            "examples": [
+                                "/health/liveness"
+                            ]
+                        },
+                        "port": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The port Schema",
+                            "examples": [
+                                9443
+                            ]
+                        },
+                        "scheme": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The scheme Schema",
+                            "examples": [
+                                "HTTPS"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "path": "/health/liveness",
+                        "port": 9443,
+                        "scheme": "HTTPS"
+                    }]
+                },
+                "initialDelaySeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The initialDelaySeconds Schema",
+                    "examples": [
+                        15
+                    ]
+                },
+                "periodSeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The periodSeconds Schema",
+                    "examples": [
+                        30
+                    ]
+                },
+                "timeoutSeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The timeoutSeconds Schema",
+                    "examples": [
+                        5
+                    ]
+                },
+                "failureThreshold": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The failureThreshold Schema",
+                    "examples": [
+                        2
+                    ]
+                },
+                "successThreshold": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The successThreshold Schema",
+                    "examples": [
+                        1
+                    ]
+                }
+            },
+            "examples": [{
+                "httpGet": {
+                    "path": "/health/liveness",
+                    "port": 9443,
+                    "scheme": "HTTPS"
+                },
+                "initialDelaySeconds": 15,
+                "periodSeconds": 30,
+                "timeoutSeconds": 5,
+                "failureThreshold": 2,
+                "successThreshold": 1
+            }]
+        },
+        "readinessProbe": {
+            "type": "object",
+            "default": {},
+            "title": "The readinessProbe Schema",
+            "required": [
+                "httpGet",
+                "initialDelaySeconds",
+                "periodSeconds",
+                "timeoutSeconds",
+                "failureThreshold",
+                "successThreshold"
+            ],
+            "properties": {
+                "httpGet": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The httpGet Schema",
+                    "required": [
+                        "path",
+                        "port",
+                        "scheme"
+                    ],
+                    "properties": {
+                        "path": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The path Schema",
+                            "examples": [
+                                "/health/readiness"
+                            ]
+                        },
+                        "port": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The port Schema",
+                            "examples": [
+                                9443
+                            ]
+                        },
+                        "scheme": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The scheme Schema",
+                            "examples": [
+                                "HTTPS"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "path": "/health/readiness",
+                        "port": 9443,
+                        "scheme": "HTTPS"
+                    }]
+                },
+                "initialDelaySeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The initialDelaySeconds Schema",
+                    "examples": [
+                        5
+                    ]
+                },
+                "periodSeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The periodSeconds Schema",
+                    "examples": [
+                        10
+                    ]
+                },
+                "timeoutSeconds": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The timeoutSeconds Schema",
+                    "examples": [
+                        5
+                    ]
+                },
+                "failureThreshold": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The failureThreshold Schema",
+                    "examples": [
+                        6
+                    ]
+                },
+                "successThreshold": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The successThreshold Schema",
+                    "examples": [
+                        1
+                    ]
+                }
+            },
+            "examples": [{
+                "httpGet": {
+                    "path": "/health/readiness",
+                    "port": 9443,
+                    "scheme": "HTTPS"
+                },
+                "initialDelaySeconds": 5,
+                "periodSeconds": 10,
+                "timeoutSeconds": 5,
+                "failureThreshold": 6,
+                "successThreshold": 1
+            }]
+        },
+        "generatecontrollerExtraResources": {
+            "type": "array",
+            "default": [],
+            "title": "The generatecontrollerExtraResources Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "excludeKyvernoNamespace": {
+            "type": "boolean",
+            "default": false,
+            "title": "The excludeKyvernoNamespace Schema",
+            "examples": [
+                true
+            ]
+        },
+        "resourceFiltersExcludeNamespaces": {
+            "type": "array",
+            "default": [],
+            "title": "The resourceFiltersExcludeNamespaces Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "config": {
+            "type": "object",
+            "default": {},
+            "title": "The config Schema",
+            "required": [
+                "resourceFilters",
+                "existingConfig",
+                "annotations",
+                "excludeGroupRole",
+                "excludeUsername",
+                "webhooks",
+                "generateSuccessEvents",
+                "metricsConfig"
+            ],
+            "properties": {
+                "resourceFilters": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The resourceFilters Schema",
+                    "items": {
+                        "type": "string",
+                        "title": "A Schema",
+                        "examples": [
+                            "[Event,*,*]",
+                            "[*,kube-system,*]",
+                            "[*,kube-public,*]",
+                            "[*,kube-node-lease,*]",
+                            "[Node,*,*]",
+                            "[APIService,*,*]",
+                            "[TokenReview,*,*]",
+                            "[SubjectAccessReview,*,*]",
+                            "[SelfSubjectAccessReview,*,*]",
+                            "[Binding,*,*]",
+                            "[ReplicaSet,*,*]",
+                            "[AdmissionReport,*,*]",
+                            "[ClusterAdmissionReport,*,*]",
+                            "[BackgroundScanReport,*,*]",
+                            "[ClusterBackgroundScanReport,*,*]",
+                            "[ClusterRole,*,{{ template \"kyverno.fullname\" . }}:*]",
+                            "[ClusterRoleBinding,*,{{ template \"kyverno.fullname\" . }}:*]",
+                            "[ServiceAccount,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceAccountName\" . }}]",
+                            "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.configMapName\" . }}]",
+                            "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.metricsConfigMapName\" . }}]",
+                            "[Deployment,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[Job,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-hook-pre-delete]",
+                            "[NetworkPolicy,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[PodDisruptionBudget,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[Role,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                            "[RoleBinding,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                            "[Secret,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}.{{ template \"kyverno.namespace\" . }}.svc.*]",
+                            "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}]",
+                            "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}-metrics]",
+                            "[ServiceMonitor,{{ if .Values.serviceMonitor.namespace }}{{ .Values.serviceMonitor.namespace }}{{ else }}{{ template \"kyverno.namespace\" . }}{{ end }},{{ template \"kyverno.serviceName\" . }}-service-monitor]",
+                            "[Pod,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-test]"
+                        ]
+                    },
+                    "examples": [
+                        ["[Event,*,*]",
+                            "[*,kube-system,*]",
+                            "[*,kube-public,*]",
+                            "[*,kube-node-lease,*]",
+                            "[Node,*,*]",
+                            "[APIService,*,*]",
+                            "[TokenReview,*,*]",
+                            "[SubjectAccessReview,*,*]",
+                            "[SelfSubjectAccessReview,*,*]",
+                            "[Binding,*,*]",
+                            "[ReplicaSet,*,*]",
+                            "[AdmissionReport,*,*]",
+                            "[ClusterAdmissionReport,*,*]",
+                            "[BackgroundScanReport,*,*]",
+                            "[ClusterBackgroundScanReport,*,*]",
+                            "[ClusterRole,*,{{ template \"kyverno.fullname\" . }}:*]",
+                            "[ClusterRoleBinding,*,{{ template \"kyverno.fullname\" . }}:*]",
+                            "[ServiceAccount,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceAccountName\" . }}]",
+                            "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.configMapName\" . }}]",
+                            "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.metricsConfigMapName\" . }}]",
+                            "[Deployment,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[Job,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-hook-pre-delete]",
+                            "[NetworkPolicy,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[PodDisruptionBudget,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                            "[Role,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                            "[RoleBinding,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                            "[Secret,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}.{{ template \"kyverno.namespace\" . }}.svc.*]",
+                            "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}]",
+                            "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}-metrics]",
+                            "[ServiceMonitor,{{ if .Values.serviceMonitor.namespace }}{{ .Values.serviceMonitor.namespace }}{{ else }}{{ template \"kyverno.namespace\" . }}{{ end }},{{ template \"kyverno.serviceName\" . }}-service-monitor]",
+                            "[Pod,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-test]"
+                        ]
+                    ]
+                },
+                "existingConfig": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The existingConfig Schema",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The annotations Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                },
+                "excludeGroupRole": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The excludeGroupRole Schema",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "excludeUsername": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The excludeUsername Schema",
+                    "examples": [
+                        ""
+                    ]
+                },
+                "webhooks": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The webhooks Schema",
+                    "items": {
+                        "type": "object",
+                        "default": {},
+                        "title": "A Schema",
+                        "required": [
+                            "namespaceSelector"
+                        ],
+                        "properties": {
+                            "namespaceSelector": {
+                                "type": "object",
+                                "default": {},
+                                "title": "The namespaceSelector Schema",
+                                "required": [
+                                    "matchExpressions"
+                                ],
+                                "properties": {
+                                    "matchExpressions": {
+                                        "type": "array",
+                                        "default": [],
+                                        "title": "The matchExpressions Schema",
+                                        "items": {
+                                            "type": "object",
+                                            "default": {},
+                                            "title": "A Schema",
+                                            "required": [
+                                                "key",
+                                                "operator",
+                                                "values"
+                                            ],
+                                            "properties": {
+                                                "key": {
+                                                    "type": "string",
+                                                    "default": "",
+                                                    "title": "The key Schema",
+                                                    "examples": [
+                                                        "kubernetes.io/metadata.name"
+                                                    ]
+                                                },
+                                                "operator": {
+                                                    "type": "string",
+                                                    "default": "",
+                                                    "title": "The operator Schema",
+                                                    "examples": [
+                                                        "NotIn"
+                                                    ]
+                                                },
+                                                "values": {
+                                                    "type": "array",
+                                                    "default": [],
+                                                    "title": "The values Schema",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "title": "A Schema",
+                                                        "examples": [
+                                                            "kube-system",
+                                                            "kyverno"
+                                                        ]
+                                                    },
+                                                    "examples": [
+                                                        ["kube-system",
+                                                            "kyverno"
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            "examples": [{
+                                                "key": "kubernetes.io/metadata.name",
+                                                "operator": "NotIn",
+                                                "values": [
+                                                    "kube-system",
+                                                    "kyverno"
+                                                ]
+                                            }]
+                                        },
+                                        "examples": [
+                                            [{
+                                                "key": "kubernetes.io/metadata.name",
+                                                "operator": "NotIn",
+                                                "values": [
+                                                    "kube-system",
+                                                    "kyverno"
+                                                ]
+                                            }]
+                                        ]
+                                    }
+                                },
+                                "examples": [{
+                                    "matchExpressions": [{
+                                        "key": "kubernetes.io/metadata.name",
+                                        "operator": "NotIn",
+                                        "values": [
+                                            "kube-system",
+                                            "kyverno"
+                                        ]
+                                    }]
+                                }]
+                            }
+                        },
+                        "examples": [{
+                            "namespaceSelector": {
+                                "matchExpressions": [{
+                                    "key": "kubernetes.io/metadata.name",
+                                    "operator": "NotIn",
+                                    "values": [
+                                        "kube-system",
+                                        "kyverno"
+                                    ]
+                                }]
+                            }
+                        }]
+                    },
+                    "examples": [
+                        [{
+                            "namespaceSelector": {
+                                "matchExpressions": [{
+                                    "key": "kubernetes.io/metadata.name",
+                                    "operator": "NotIn",
+                                    "values": [
+                                        "kube-system",
+                                        "kyverno"
+                                    ]
+                                }]
+                            }
+                        }]
+                    ]
+                },
+                "generateSuccessEvents": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The generateSuccessEvents Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "metricsConfig": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The metricsConfig Schema",
+                    "required": [
+                        "annotations",
+                        "namespaces"
+                    ],
+                    "properties": {
+                        "annotations": {
+                            "type": "object",
+                            "default": {},
+                            "title": "The annotations Schema",
+                            "required": [],
+                            "properties": {},
+                            "examples": [{}]
+                        },
+                        "namespaces": {
+                            "type": "object",
+                            "default": {},
+                            "title": "The namespaces Schema",
+                            "required": [
+                                "include",
+                                "exclude"
+                            ],
+                            "properties": {
+                                "include": {
+                                    "type": "array",
+                                    "default": [],
+                                    "title": "The include Schema",
+                                    "items": {},
+                                    "examples": [
+                                        []
+                                    ]
+                                },
+                                "exclude": {
+                                    "type": "array",
+                                    "default": [],
+                                    "title": "The exclude Schema",
+                                    "items": {},
+                                    "examples": [
+                                        []
+                                    ]
+                                }
+                            },
+                            "examples": [{
+                                "include": [],
+                                "exclude": []
+                            }]
+                        }
+                    },
+                    "examples": [{
+                        "annotations": {},
+                        "namespaces": {
+                            "include": [],
+                            "exclude": []
+                        }
+                    }]
+                }
+            },
+            "examples": [{
+                "resourceFilters": [
+                    "[Event,*,*]",
+                    "[*,kube-system,*]",
+                    "[*,kube-public,*]",
+                    "[*,kube-node-lease,*]",
+                    "[Node,*,*]",
+                    "[APIService,*,*]",
+                    "[TokenReview,*,*]",
+                    "[SubjectAccessReview,*,*]",
+                    "[SelfSubjectAccessReview,*,*]",
+                    "[Binding,*,*]",
+                    "[ReplicaSet,*,*]",
+                    "[AdmissionReport,*,*]",
+                    "[ClusterAdmissionReport,*,*]",
+                    "[BackgroundScanReport,*,*]",
+                    "[ClusterBackgroundScanReport,*,*]",
+                    "[ClusterRole,*,{{ template \"kyverno.fullname\" . }}:*]",
+                    "[ClusterRoleBinding,*,{{ template \"kyverno.fullname\" . }}:*]",
+                    "[ServiceAccount,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceAccountName\" . }}]",
+                    "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.configMapName\" . }}]",
+                    "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.metricsConfigMapName\" . }}]",
+                    "[Deployment,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                    "[Job,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-hook-pre-delete]",
+                    "[NetworkPolicy,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                    "[PodDisruptionBudget,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                    "[Role,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                    "[RoleBinding,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                    "[Secret,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}.{{ template \"kyverno.namespace\" . }}.svc.*]",
+                    "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}]",
+                    "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}-metrics]",
+                    "[ServiceMonitor,{{ if .Values.serviceMonitor.namespace }}{{ .Values.serviceMonitor.namespace }}{{ else }}{{ template \"kyverno.namespace\" . }}{{ end }},{{ template \"kyverno.serviceName\" . }}-service-monitor]",
+                    "[Pod,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-test]"
+                ],
+                "existingConfig": "",
+                "annotations": {},
+                "excludeGroupRole": "",
+                "excludeUsername": "",
+                "webhooks": [{
+                    "namespaceSelector": {
+                        "matchExpressions": [{
+                            "key": "kubernetes.io/metadata.name",
+                            "operator": "NotIn",
+                            "values": [
+                                "kube-system",
+                                "kyverno"
+                            ]
+                        }]
+                    }
+                }],
+                "generateSuccessEvents": false,
+                "metricsConfig": {
+                    "annotations": {},
+                    "namespaces": {
+                        "include": [],
+                        "exclude": []
+                    }
+                }
+            }]
+        },
+        "updateStrategy": {
+            "type": "object",
+            "default": {},
+            "title": "The updateStrategy Schema",
+            "required": [
+                "rollingUpdate",
+                "type"
+            ],
+            "properties": {
+                "rollingUpdate": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The rollingUpdate Schema",
+                    "required": [
+                        "maxSurge",
+                        "maxUnavailable"
+                    ],
+                    "properties": {
+                        "maxSurge": {
+                            "type": "integer",
+                            "default": 0,
+                            "title": "The maxSurge Schema",
+                            "examples": [
+                                1
+                            ]
+                        },
+                        "maxUnavailable": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The maxUnavailable Schema",
+                            "examples": [
+                                "40%"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "maxSurge": 1,
+                        "maxUnavailable": "40%"
+                    }]
+                },
+                "type": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The type Schema",
+                    "examples": [
+                        "RollingUpdate"
+                    ]
+                }
+            },
+            "examples": [{
+                "rollingUpdate": {
+                    "maxSurge": 1,
+                    "maxUnavailable": "40%"
+                },
+                "type": "RollingUpdate"
+            }]
+        },
+        "service": {
+            "type": "object",
+            "default": {},
+            "title": "The service Schema",
+            "required": [
+                "port",
+                "type",
+                "nodePort",
+                "annotations"
+            ],
+            "properties": {
+                "port": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The port Schema",
+                    "examples": [
+                        443
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The type Schema",
+                    "examples": [
+                        "ClusterIP"
+                    ]
+                },
+                "nodePort": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The nodePort Schema",
+                    "examples": [
+                        443
+                    ]
+                },
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The annotations Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                }
+            },
+            "examples": [{
+                "port": 443,
+                "type": "ClusterIP",
+                "nodePort": 443,
+                "annotations": {}
+            }]
+        },
+        "topologySpreadConstraints": {
+            "type": "array",
+            "default": [],
+            "title": "The topologySpreadConstraints Schema",
+            "items": {},
+            "examples": [
+                []
+            ]
+        },
+        "metricsService": {
+            "type": "object",
+            "default": {},
+            "title": "The metricsService Schema",
+            "required": [
+                "create",
+                "port",
+                "type",
+                "nodePort",
+                "annotations"
+            ],
+            "properties": {
+                "create": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The create Schema",
+                    "examples": [
+                        true
+                    ]
+                },
+                "port": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The port Schema",
+                    "examples": [
+                        8000
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The type Schema",
+                    "examples": [
+                        "ClusterIP"
+                    ]
+                },
+                "nodePort": {
+                    "type": "integer",
+                    "default": 0,
+                    "title": "The nodePort Schema",
+                    "examples": [
+                        443
+                    ]
+                },
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The annotations Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                }
+            },
+            "examples": [{
+                "create": true,
+                "port": 8000,
+                "type": "ClusterIP",
+                "nodePort": 443,
+                "annotations": {}
+            }]
+        },
+        "serviceMonitor": {
+            "type": "object",
+            "default": {},
+            "title": "The serviceMonitor Schema",
+            "required": [
+                "enabled",
+                "additionalLabels",
+                "namespace",
+                "interval",
+                "scrapeTimeout",
+                "secure",
+                "tlsConfig"
+            ],
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The enabled Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "additionalLabels": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The additionalLabels Schema",
+                    "required": [
+                        "charts.openshift.io/name"
+                    ],
+                    "properties": {
+                        "charts.openshift.io/name": {
+                            "type": "string",
+                            "default": "",
+                            "title": "The charts.openshift.io/name Schema",
+                            "examples": [
+                                "kyverno"
+                            ]
+                        }
+                    },
+                    "examples": [{
+                        "charts.openshift.io/name": "kyverno"
+                    }]
+                },
+                "namespace": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The namespace Schema",
+                    "examples": [
+                        "kyverno"
+                    ]
+                },
+                "interval": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The interval Schema",
+                    "examples": [
+                        "30s"
+                    ]
+                },
+                "scrapeTimeout": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The scrapeTimeout Schema",
+                    "examples": [
+                        "25s"
+                    ]
+                },
+                "secure": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The secure Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "tlsConfig": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The tlsConfig Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                }
+            },
+            "examples": [{
+                "enabled": false,
+                "additionalLabels": {
+                    "charts.openshift.io/name": "kyverno"
+                },
+                "namespace": "kyverno",
+                "interval": "30s",
+                "scrapeTimeout": "25s",
+                "secure": false,
+                "tlsConfig": {}
+            }]
+        },
+        "createSelfSignedCert": {
+            "type": "boolean",
+            "default": false,
+            "title": "The createSelfSignedCert Schema",
+            "examples": [
+                false
+            ]
+        },
+        "installCRDs": {
+            "type": "boolean",
+            "default": false,
+            "title": "The installCRDs Schema",
+            "examples": [
+                true
+            ]
+        },
+        "crds": {
+            "type": "object",
+            "default": {},
+            "title": "The crds Schema",
+            "required": [
+                "annotations"
+            ],
+            "properties": {
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The annotations Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                }
+            },
+            "examples": [{
+                "annotations": {}
+            }]
+        },
+        "networkPolicy": {
+            "type": "object",
+            "default": {},
+            "title": "The networkPolicy Schema",
+            "required": [
+                "enabled",
+                "ingressFrom"
+            ],
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The enabled Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "ingressFrom": {
+                    "type": "array",
+                    "default": [],
+                    "title": "The ingressFrom Schema",
+                    "items": {},
+                    "examples": [
+                        []
+                    ]
+                }
+            },
+            "examples": [{
+                "enabled": false,
+                "ingressFrom": []
+            }]
+        },
+        "webhooksCleanup": {
+            "type": "object",
+            "default": {},
+            "title": "The webhooksCleanup Schema",
+            "required": [
+                "enable",
+                "image"
+            ],
+            "properties": {
+                "enable": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The enable Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "image": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The image Schema",
+                    "examples": [
+                        "bitnami/kubectl:latest"
+                    ]
+                }
+            },
+            "examples": [{
+                "enable": false,
+                "image": "bitnami/kubectl:latest"
+            }]
+        },
+        "tufRootMountPath": {
+            "type": "string",
+            "default": "",
+            "title": "The tufRootMountPath Schema",
+            "examples": [
+                "/.sigstore"
+            ]
+        },
+        "grafana": {
+            "type": "object",
+            "default": {},
+            "title": "The grafana Schema",
+            "required": [
+                "enabled",
+                "namespace",
+                "annotations"
+            ],
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": false,
+                    "title": "The enabled Schema",
+                    "examples": [
+                        false
+                    ]
+                },
+                "namespace": {
+                    "type": "string",
+                    "default": "",
+                    "title": "The namespace Schema",
+                    "examples": [
+                        "kyverno"
+                    ]
+                },
+                "annotations": {
+                    "type": "object",
+                    "default": {},
+                    "title": "The annotations Schema",
+                    "required": [],
+                    "properties": {},
+                    "examples": [{}]
+                }
+            },
+            "examples": [{
+                "enabled": false,
+                "namespace": "kyverno",
+                "annotations": {}
+            }]
+        }
+    },
+    "examples": [{
+        "nameOverride": "kyverno",
+        "fullnameOverride": "kyverno",
+        "namespace": "kyverno",
+        "customLabels": {},
+        "rbac": {
+            "create": true,
+            "serviceAccount": {
+                "create": true,
+                "name": "kyverno",
+                "annotations": {}
+            }
+        },
+        "image": {
+            "registry": "registry.connect.redhat.com",
+            "repository": "registry.connect.redhat.com/nirmata/kyverno",
+            "tag": "v1.8.3",
+            "pullPolicy": "IfNotPresent",
+            "pullSecrets": []
+        },
+        "initImage": {
+            "registry": "registry.connect.redhat.com",
+            "repository": "registry.connect.redhat.com/nirmata/kyvernopre",
+            "tag": "v1.8.3",
+            "pullPolicy": "IfNotPresent"
+        },
+        "initContainer": {
+            "extraArgs": [
+                "--loggingFormat=text"
+            ]
+        },
+        "testImage": {
+            "registry": "registry.access.redhat.com",
+            "repository": "registry.access.redhat.com/ubi8/nginx-120",
+            "tag": "1-74.1669834626",
+            "pullPolicy": "IfNotPresent"
+        },
+        "replicaCount": 1,
+        "podLabels": {},
+        "podAnnotations": {},
+        "podSecurityContext": {},
+        "securityContext": {
+            "runAsNonRoot": true,
+            "privileged": false,
+            "allowPrivilegeEscalation": false,
+            "readOnlyRootFilesystem": true,
+            "capabilities": {
+                "drop": [
+                    "ALL"
+                ]
+            },
+            "seccompProfile": {
+                "type": "RuntimeDefault"
+            }
+        },
+        "testSecurityContext": {
+            "runAsUser": 65534,
+            "runAsGroup": 65534,
+            "runAsNonRoot": true,
+            "privileged": false,
+            "allowPrivilegeEscalation": false,
+            "readOnlyRootFilesystem": true,
+            "capabilities": {
+                "drop": [
+                    "ALL"
+                ]
+            },
+            "seccompProfile": {
+                "type": "RuntimeDefault"
+            }
+        },
+        "priorityClassName": "",
+        "antiAffinity": {
+            "enable": true
+        },
+        "podAntiAffinity": {
+            "preferredDuringSchedulingIgnoredDuringExecution": [{
+                "weight": 1,
+                "podAffinityTerm": {
+                    "labelSelector": {
+                        "matchExpressions": [{
+                            "key": "app.kubernetes.io/name",
+                            "operator": "In",
+                            "values": [
+                                "kyverno"
+                            ]
+                        }]
+                    },
+                    "topologyKey": "kubernetes.io/hostname"
+                }
+            }]
+        },
+        "podAffinity": {},
+        "nodeAffinity": {},
+        "podDisruptionBudget": {
+            "minAvailable": 1,
+            "maxUnavailable": 1
+        },
+        "nodeSelector": {},
+        "tolerations": [],
+        "hostNetwork": false,
+        "dnsPolicy": "ClusterFirst",
+        "envVarsInit": {},
+        "envVars": {},
+        "extraArgs": [
+            "--autogenInternals=true",
+            "--loggingFormat=text"
+        ],
+        "extraInitContainers": [],
+        "extraContainers": [],
+        "imagePullSecrets": {},
+        "resources": {
+            "limits": {
+                "memory": "384Mi"
+            },
+            "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+            }
+        },
+        "initResources": {
+            "limits": {
+                "cpu": "100m",
+                "memory": "256Mi"
+            },
+            "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+            }
+        },
+        "testResources": {
+            "limits": {
+                "cpu": "100m",
+                "memory": "256Mi"
+            },
+            "requests": {
+                "cpu": "10m",
+                "memory": "64Mi"
+            }
+        },
+        "startupProbe": {
+            "httpGet": {
+                "path": "/health/liveness",
+                "port": 9443,
+                "scheme": "HTTPS"
+            },
+            "failureThreshold": 20,
+            "initialDelaySeconds": 2,
+            "periodSeconds": 6
+        },
+        "livenessProbe": {
+            "httpGet": {
+                "path": "/health/liveness",
+                "port": 9443,
+                "scheme": "HTTPS"
+            },
+            "initialDelaySeconds": 15,
+            "periodSeconds": 30,
+            "timeoutSeconds": 5,
+            "failureThreshold": 2,
+            "successThreshold": 1
+        },
+        "readinessProbe": {
+            "httpGet": {
+                "path": "/health/readiness",
+                "port": 9443,
+                "scheme": "HTTPS"
+            },
+            "initialDelaySeconds": 5,
+            "periodSeconds": 10,
+            "timeoutSeconds": 5,
+            "failureThreshold": 6,
+            "successThreshold": 1
+        },
+        "generatecontrollerExtraResources": [],
+        "excludeKyvernoNamespace": true,
+        "resourceFiltersExcludeNamespaces": [],
+        "config": {
+            "resourceFilters": [
+                "[Event,*,*]",
+                "[*,kube-system,*]",
+                "[*,kube-public,*]",
+                "[*,kube-node-lease,*]",
+                "[Node,*,*]",
+                "[APIService,*,*]",
+                "[TokenReview,*,*]",
+                "[SubjectAccessReview,*,*]",
+                "[SelfSubjectAccessReview,*,*]",
+                "[Binding,*,*]",
+                "[ReplicaSet,*,*]",
+                "[AdmissionReport,*,*]",
+                "[ClusterAdmissionReport,*,*]",
+                "[BackgroundScanReport,*,*]",
+                "[ClusterBackgroundScanReport,*,*]",
+                "[ClusterRole,*,{{ template \"kyverno.fullname\" . }}:*]",
+                "[ClusterRoleBinding,*,{{ template \"kyverno.fullname\" . }}:*]",
+                "[ServiceAccount,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceAccountName\" . }}]",
+                "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.configMapName\" . }}]",
+                "[ConfigMap,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.metricsConfigMapName\" . }}]",
+                "[Deployment,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                "[Job,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-hook-pre-delete]",
+                "[NetworkPolicy,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                "[PodDisruptionBudget,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}]",
+                "[Role,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                "[RoleBinding,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}:*]",
+                "[Secret,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}.{{ template \"kyverno.namespace\" . }}.svc.*]",
+                "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}]",
+                "[Service,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.serviceName\" . }}-metrics]",
+                "[ServiceMonitor,{{ if .Values.serviceMonitor.namespace }}{{ .Values.serviceMonitor.namespace }}{{ else }}{{ template \"kyverno.namespace\" . }}{{ end }},{{ template \"kyverno.serviceName\" . }}-service-monitor]",
+                "[Pod,{{ include \"kyverno.namespace\" . }},{{ template \"kyverno.fullname\" . }}-test]"
+            ],
+            "existingConfig": "",
+            "annotations": {},
+            "excludeGroupRole": "",
+            "excludeUsername": "",
+            "webhooks": [{
+                "namespaceSelector": {
+                    "matchExpressions": [{
+                        "key": "kubernetes.io/metadata.name",
+                        "operator": "NotIn",
+                        "values": [
+                            "kube-system",
+                            "kyverno"
+                        ]
+                    }]
+                }
+            }],
+            "generateSuccessEvents": false,
+            "metricsConfig": {
+                "annotations": {},
+                "namespaces": {
+                    "include": [],
+                    "exclude": []
+                }
+            }
+        },
+        "updateStrategy": {
+            "rollingUpdate": {
+                "maxSurge": 1,
+                "maxUnavailable": "40%"
+            },
+            "type": "RollingUpdate"
+        },
+        "service": {
+            "port": 443,
+            "type": "ClusterIP",
+            "nodePort": 443,
+            "annotations": {}
+        },
+        "topologySpreadConstraints": [],
+        "metricsService": {
+            "create": true,
+            "port": 8000,
+            "type": "ClusterIP",
+            "nodePort": 443,
+            "annotations": {}
+        },
+        "serviceMonitor": {
+            "enabled": false,
+            "additionalLabels": {
+                "charts.openshift.io/name": "kyverno"
+            },
+            "namespace": "kyverno",
+            "interval": "30s",
+            "scrapeTimeout": "25s",
+            "secure": false,
+            "tlsConfig": {}
+        },
+        "createSelfSignedCert": false,
+        "installCRDs": true,
+        "crds": {
+            "annotations": {}
+        },
+        "networkPolicy": {
+            "enabled": false,
+            "ingressFrom": []
+        },
+        "webhooksCleanup": {
+            "enable": false,
+            "image": "bitnami/kubectl:latest"
+        },
+        "tufRootMountPath": "/.sigstore",
+        "grafana": {
+            "enabled": false,
+            "namespace": "kyverno",
+            "annotations": {}
+        }
+    }]
+}

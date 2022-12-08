@@ -19,6 +19,7 @@ maintainers:
     url: https://kyverno.io/
 kubeVersion: ">=1.16.0-0"
 annotations:
+  charts.openshift.io/name: "kyverno"
   artifacthub.io/operator: "false"
   artifacthub.io/prerelease: "false"
   artifacthub.io/links: |

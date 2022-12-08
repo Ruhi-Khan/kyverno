@@ -1,11 +1,11 @@
 # -- Override the name of the chart
-nameOverride:
+nameOverride: kyverno
 
 # -- Override the expanded name of the chart
-fullnameOverride:
+fullnameOverride: kyverno
 
 # -- Namespace the chart deploys to
-namespace:
+namespace: kyverno
 
 # -- Additional labels
 customLabels: {}
@@ -17,22 +17,22 @@ rbac:
     # -- Create a ServiceAccount
     create: true
     # -- The ServiceAccount name
-    name:
+    name: kyverno
     # -- Annotations for the ServiceAccount
     annotations: {}
       # example.com/annotation: value
 
 image:
   # -- Image registry
-  registry:
+  registry: registry.connect.redhat.com
   # If you want to manage the registry you should remove it from the repository
   # registry: ghcr.io
   # repository: kyverno/kyverno
   # -- Image repository
-  repository: ghcr.io/kyverno/kyverno  # kyverno: replaced in e2e tests
+  repository: registry.connect.redhat.com/nirmata/kyverno  # kyverno: replaced in e2e tests
   # -- Image tag
   # Defaults to appVersion in Chart.yaml if omitted
-  tag:  # replaced in e2e tests
+  tag: v1.8.3 # replaced in e2e tests
   # -- Image pull policy
   pullPolicy: IfNotPresent
   # -- Image pull secrets
@@ -41,18 +41,18 @@ image:
 
 initImage:
   # -- Image registry
-  registry:
+  registry: registry.connect.redhat.com
   # If you want to manage the registry you should remove it from the repository
   # registry: ghcr.io
   # repository: kyverno/kyvernopre
   # -- Image repository
-  repository: ghcr.io/kyverno/kyvernopre  # init: replaced in e2e tests
+  repository: registry.connect.redhat.com/nirmata/kyvernopre # init: replaced in e2e tests
   # -- Image tag
   # If initImage.tag is missing, defaults to image.tag
-  tag:  # replaced in e2e tests
+  tag: v1.8.3 # replaced in e2e tests
   # -- Image pull policy
   # If initImage.pullPolicy is missing, defaults to image.pullPolicy
-  pullPolicy:
+  pullPolicy: IfNotPresent
 
 initContainer:
   # -- Extra arguments to give to the kyvernopre binary.
@@ -62,18 +62,18 @@ initContainer:
 
 testImage:
   # -- Image registry
-  registry:
+  registry: registry.access.redhat.com
   # -- Image repository
-  repository: busybox
+  repository: registry.access.redhat.com/ubi8/nginx-120
   # -- Image tag
   # Defaults to `latest` if omitted
-  tag:
+  tag: 1-74.1669834626
   # -- Image pull policy
   # Defaults to image.pullPolicy if omitted
-  pullPolicy:
+  pullPolicy: IfNotPresent
 
 # -- (int) Desired number of pods
-replicaCount: ~
+replicaCount: 1
 
 # -- Additional labels to add to each pod
 podLabels: {}
@@ -146,7 +146,7 @@ podDisruptionBudget:
   minAvailable: 1
   # -- Configures the maximum unavailable pods for kyverno disruptions.
   # Cannot be used if `minAvailable` is set.
-  maxUnavailable:
+  maxUnavailable: 1
 
 # -- Node labels for pod assignment
 nodeSelector: {}
@@ -333,10 +333,10 @@ config:
   annotations: {}
     # example.com/annotation: foo
   # -- Exclude group role
-  excludeGroupRole:
+  excludeGroupRole: ""
   # - ''
   # -- Exclude username
-  excludeUsername:
+  excludeUsername: ""
   # - ''
   # -- Defines the `namespaceSelector` in the webhook configurations.
   # Note that it takes a list of `namespaceSelector` and/or `objectSelector` in the JSON format, and only the first element
@@ -344,13 +344,13 @@ config:
   # The Kyverno namespace is excluded if `excludeKyvernoNamespace` is `true` (default)
   webhooks:
     # Exclude namespaces
-    # - namespaceSelector:
-    #     matchExpressions:
-    #     - key: kubernetes.io/metadata.name
-    #       operator: NotIn
-    #       values:
-    #         - kube-system
-    #         - kyverno
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: NotIn
+          values:
+            - kube-system
+            - kyverno
     # Exclude objects
     # - objectSelector:
     #     matchExpressions:
@@ -392,7 +392,7 @@ service:
   type: ClusterIP
   # -- Service node port.
   # Only used if `service.type` is `NodePort`.
-  nodePort:
+  nodePort: 443
   # -- Service annotations.
   annotations: {}
 
@@ -409,7 +409,7 @@ metricsService:
   type: ClusterIP
   # -- Service node port.
   # Only used if `metricsService.type` is `NodePort`.
-  nodePort:
+  nodePort: 443
   # -- Service annotations.
   annotations: {}
 
@@ -418,9 +418,10 @@ serviceMonitor:
   enabled: false
   # -- Additional labels
   additionalLabels:
+    charts.openshift.io/name: "kyverno"
     # key: value
   # -- Override namespace (default is the same as kyverno)
-  namespace:
+  namespace: kyverno
   # --  Interval to scrape metrics
   interval: 30s
   # -- Timeout if metrics can't be retrieved in given time interval
@@ -473,6 +474,6 @@ grafana:
   enabled: false
   # -- Namespace to create the grafana dashboard configmap.
   # If not set, it will be created in the same namespace where the chart is deployed.
-  namespace:
+  namespace: kyverno
   # -- Grafana dashboard configmap annotations.
   annotations: {}

@@ -1,0 +1,14 @@
+FROM registry.access.redhat.com/ubi9/ubi:latest
+ADD kyverno /kyverno
+COPY licenses /licenses
+USER 10001
+
+LABEL name="Kyverno" \
+      maintainer="Kyverno" \
+      vendor="Nirmata" \
+      version="v1.8.4" \
+      release="v1.8.4" \
+      summary="Kubernetes Native Policy Management" \
+      description="Kubernetes Native Policy Management" 
+
+ENTRYPOINT ["/kyverno"]

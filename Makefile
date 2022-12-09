@@ -298,6 +298,12 @@ docker-build-kyverno: docker-buildx-builder ## Build kyverno local image (with d
 	@echo Build kyverno local image with docker... >&2
 	@docker buildx build --file $(KYVERNO_DIR)/Dockerfile --progress plain --load --platform $(LOCAL_PLATFORM) --tag $(REPO_KYVERNO):$(IMAGE_TAG_DEV) . --build-arg LD_FLAGS=$(LD_FLAGS_DEV)
 
+docker-build-kyvernopre-redhat:
+	CGO_ENABLED=0 GOOS=linux go build -o $(KYVERNOPRE_DIR)/kyvernopre -tags $(IMAGE_TAG_DEV) -ldflags=$(LD_FLAGS_DEV) $(KYVERNOPRE_DIR)
+	@docker build -f $(KYVERNOPRE_DIR)/Dockerfile-Redhat -t $(REPO_KYVERNOPRE):$(IMAGE_TAG_DEV) $(KYVERNOPRE_DIR)
+	@docker tag $(REPO_KYVERNOPRE):$(IMAGE_TAG_DEV) $(REPO_KYVERNOPRE):latest
+
+
 docker-build-kyverno-redhat:
 	CGO_ENABLED=0 GOOS=linux go build -o $(KYVERNO_DIR)/kyverno -tags $(IMAGE_TAG_DEV) -ldflags=$(LD_FLAGS_DEV) $(KYVERNO_DIR)
 	@docker build -f $(KYVERNO_DIR)/Dockerfile-Redhat -t $(REPO_KYVERNO):$(IMAGE_TAG_DEV) $(KYVERNO_DIR)

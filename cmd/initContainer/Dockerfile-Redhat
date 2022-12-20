@@ -6,8 +6,8 @@ USER 10001
 LABEL name="Kyverno" \
       maintainer="Kyverno" \
       vendor="Nirmata" \
-      version="v1.8.4" \
-      release="v1.8.4" \
+      version="v1.8.5" \
+      release="v1.8.5" \
       summary="Kubernetes Native Policy Management" \
       description="Kubernetes Native Policy Management" 
 

@@ -32,7 +32,7 @@ image:
   repository: registry.connect.redhat.com/nirmata/kyverno  # kyverno: replaced in e2e tests
   # -- Image tag
   # Defaults to appVersion in Chart.yaml if omitted
-  tag: v1.8.4 # replaced in e2e tests
+  tag: v1.8.5 # replaced in e2e tests
   # -- Image pull policy
   pullPolicy: IfNotPresent
   # -- Image pull secrets
@@ -49,7 +49,7 @@ initImage:
   repository: registry.connect.redhat.com/nirmata/kyvernopre # init: replaced in e2e tests
   # -- Image tag
   # If initImage.tag is missing, defaults to image.tag
-  tag: v1.8.4 # replaced in e2e tests
+  tag: v1.8.5 # replaced in e2e tests
   # -- Image pull policy
   # If initImage.pullPolicy is missing, defaults to image.pullPolicy
   pullPolicy: IfNotPresent

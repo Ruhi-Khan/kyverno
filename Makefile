@@ -256,6 +256,7 @@ KO_CLEANUP_IMAGE    := ko.local/github.com/kyverno/kyverno/cmd/cleanup-controlle
 
 .PHONY: ko-login
 ko-login: $(KO)
+	echo "REGISTRY_USERNAME" $(REGISTRY_USERNAME) "REGISTRY_PASSWORD" $(REGISTRY_PASSWORD)
 	@$(KO) login $(REGISTRY) --username $(REGISTRY_USERNAME) --password $(REGISTRY_PASSWORD)
 
 .PHONY: ko-publish-kyvernopre

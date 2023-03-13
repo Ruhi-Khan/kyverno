@@ -815,3 +815,4 @@ dev-lab-all: dev-lab-ingress-ngingx dev-lab-metrics-server dev-lab-prometheus de
 .PHONY: help
 help: ## Shows the available commands
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-40s\033[0m %s\n", $$1, $$2}'
+
